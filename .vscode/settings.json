@@ -1,0 +1,27 @@
+{
+   "actionButtons": {
+      "reloadButton": null,
+      "defaultColor": "#ff0034", // Can also use string color names.
+      "loadNpmCommands": false, // Disables automatic generation of actions for npm commands.
+      "commands": [
+         {
+            "name": "Run",
+            "color": "green",
+            "singleInstance": true,
+            "command": "./build/main" // This is executed in the terminal.
+         },
+         {
+            "name": "Build",
+            "color": "green",
+            "singleInstance": true,
+            "command": "./comprun.sh" // This is executed in the terminal.
+         }
+      ]
+   },
+   "files.associations": {
+      "*.h": "cpp",
+      "*.cpp": "cpp"
+   },
+   // cpp formatting
+   "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: LLVM, UseTab: Never, IndentWidth: 3, TabWidth: 3, BreakBeforeBraces: Attach, AllowShortIfStatementsOnASingleLine: false, IndentCaseLabels: false, ColumnLimit: 0, AccessModifierOffset: -2 }"
+}

@@ -1,0 +1,19 @@
+{
+   "configurations": [
+      {
+         "name": "flappy-bird-mac",
+         "includePath": [
+            "${workspaceFolder}/src/**",
+            "${workspaceFolder}/include/**",
+            "/Library/Frameworks/SDL2.framework/Headers"
+         ],
+         "macFrameworkPath": ["/Library/Frameworks"],
+         "defines": [],
+         "compilerPath": "/opt/homebrew/bin/clang",
+         "cStandard": "${default}",
+         "cppStandard": "${default}",
+         "intelliSenseMode": "macos-clang-arm64"
+      }
+   ],
+   "version": 4
+}
