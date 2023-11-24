@@ -1,13 +1,13 @@
-#include "test.h"
+#include "game.h"
+
 #include <SDL.h>
-#include <iostream>
-#include <string>
+
+const int width = 500;
+const int height = 800;
+
+using namespace flappy_bird;
 
 int main(int argc, char const *argv[]) {
-   int sum = add(1, 3);
-
-   std::string msg = "Sum: ";
-
-   std::cout << msg << std::to_string(sum) << std::endl;
-   return 0;
+   Game game(width, height);
+   return game.run();
 }

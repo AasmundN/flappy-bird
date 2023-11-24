@@ -18,10 +18,6 @@
          }
       ]
    },
-   "files.associations": {
-      "*.h": "cpp",
-      "*.cpp": "cpp"
-   },
    // cpp formatting
    "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: LLVM, UseTab: Never, IndentWidth: 3, TabWidth: 3, BreakBeforeBraces: Attach, AllowShortIfStatementsOnASingleLine: false, IndentCaseLabels: false, ColumnLimit: 0, AccessModifierOffset: -2 }"
 }
