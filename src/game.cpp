@@ -31,7 +31,6 @@ Game::Game(int width, int height)
    }
 
    SDL_CreateWindowAndRenderer(width, height, 0, &window, &renderer);
-   SDL_SetWindowResizable(window, SDL_TRUE);
 }
 
 Game::~Game() {
