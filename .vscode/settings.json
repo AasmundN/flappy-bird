@@ -8,7 +8,7 @@
             "name": "Run",
             "color": "green",
             "singleInstance": true,
-            "command": "./build/main" // This is executed in the terminal.
+            "command": "./bin/main" // This is executed in the terminal.
          },
          {
             "name": "Build",

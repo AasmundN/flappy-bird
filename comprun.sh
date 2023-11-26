@@ -15,4 +15,4 @@ echo "Running program..."
 echo
 
 # run the program
-./build/main
+./bin/main

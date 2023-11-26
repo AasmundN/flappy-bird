@@ -5,7 +5,7 @@ CC = clang++
 TARGET = main
 
 # build taget directory and src directory
-BUILD_FOLDER = build
+BUILD_FOLDER = bin
 SOURCE_FOLDER = src
 
 # all include directories
