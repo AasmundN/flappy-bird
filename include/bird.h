@@ -6,8 +6,8 @@
 class Bird : public Entity {
 
  public:
-   Bird();
-   virtual ~Bird() = default;
+   Bird(SDL_Renderer &renderer);
+   ~Bird();
    void render(SDL_Renderer &renderer);
    void update();
    void jump();
@@ -16,6 +16,7 @@ class Bird : public Entity {
    int velocity;
    int acceleration;
    const char *img = "graphics/mogus.png";
+   SDL_Texture *img_texture;
 };
 
 #endif

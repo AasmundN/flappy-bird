@@ -47,9 +47,10 @@ int Game::run() {
    // temporary background image
    const char *img = "graphics/mogus.jpeg";
    SDL_Rect texture_rect({0, 0, 500, 800});
+   SDL_Texture *img_texture = IMG_LoadTexture(renderer, img);
 
    if (!bird)
-      bird = std::make_unique<Bird>();
+      bird = std::make_unique<Bird>(*renderer);
 
    while (state == State::RUNNING) {
       while (SDL_PollEvent(&event) != 0) {
@@ -77,13 +78,14 @@ int Game::run() {
       SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0xff);
       SDL_RenderClear(renderer);
 
-      SDL_Texture *img_texture = IMG_LoadTexture(renderer, img);
       SDL_RenderCopy(renderer, img_texture, NULL, &texture_rect);
 
       bird->render(*renderer);
 
       SDL_RenderPresent(renderer);
    }
+
+   SDL_DestroyTexture(img_texture);
 
    return 0;
 }

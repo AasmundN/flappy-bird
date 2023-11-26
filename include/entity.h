@@ -11,9 +11,7 @@ class Entity {
    virtual void render(SDL_Renderer &renderer) = 0;
    virtual void update() = 0;
 
-   SDL_Rect *getRect() { return &rect; }
-
- private:
+ protected:
    SDL_Rect rect;
 };
 

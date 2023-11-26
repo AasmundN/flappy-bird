@@ -2,23 +2,23 @@
 
 #include <SDL_image.h>
 
-#include <iostream>
-
 #define GRAVITY -2
 
-Bird::Bird() : velocity(10), acceleration(GRAVITY) {
-   SDL_Rect *rect = getRect();
+Bird::Bird(SDL_Renderer &renderer) : velocity(10), acceleration(GRAVITY) {
+   rect.h = 70;
+   rect.w = 70;
 
-   rect->h = 70;
-   rect->w = 70;
+   rect.x = 100;
+   rect.y = 200;
 
-   rect->x = 100;
-   rect->y = 200;
+   img_texture = IMG_LoadTexture(&renderer, img);
+}
+
+Bird::~Bird() {
+   SDL_DestroyTexture(img_texture);
 }
 
 void Bird::render(SDL_Renderer &renderer) {
-   SDL_Texture *img_texture = IMG_LoadTexture(&renderer, img);
-
    double angle;
 
    if (velocity >= 20)
@@ -28,18 +28,18 @@ void Bird::render(SDL_Renderer &renderer) {
    else
       angle = 120 - (velocity + 20) * (120 / 40);
 
-   SDL_RenderCopyEx(&renderer, img_texture, NULL, getRect(), angle, NULL, SDL_FLIP_NONE);
+   SDL_RenderCopyEx(&renderer, img_texture, NULL, &rect, angle, NULL, SDL_FLIP_NONE);
 }
 
 void Bird::update() {
-   SDL_Rect *rect = getRect();
-
    velocity += acceleration;
 
-   if (rect->y - velocity > 750)
+   if (rect.y - velocity > 750) {
+      rect.y = 750;
       return;
+   }
 
-   rect->y -= velocity;
+   rect.y -= velocity;
 }
 
 void Bird::jump() {
