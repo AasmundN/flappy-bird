@@ -5,7 +5,8 @@
          "includePath": [
             "${workspaceFolder}/src/**",
             "${workspaceFolder}/include/**",
-            "/Library/Frameworks/SDL2.framework/Headers"
+            "/Library/Frameworks/SDL2.framework/Headers",
+            "/Library/Frameworks/SDL2_image.framework/Headers"
          ],
          "macFrameworkPath": ["/Library/Frameworks"],
          "defines": [],

@@ -9,11 +9,11 @@ BUILD_FOLDER = build
 SOURCE_FOLDER = src
 
 # all include directories
-INCLUDES = -I/Library/Frameworks/SDL2.framework/Headers -I./include
+INCLUDES = -I/Library/Frameworks/SDL2.framework/Headers -I/Library/Frameworks/SDL2_image.framework/Headers -I./include
 
 # framework path
 FRAMEWORKS_PATH = /Library/Frameworks
-FRAMEWORK = SDL2
+FRAMEWORKS = -framework SDL2 -framework SDL2_image
 
 all: output $(TARGET)
 
@@ -23,4 +23,4 @@ output:
 
 # compile program
 $(TARGET): $(SOURCE_FOLDER)/$(/$(TARGET).cpp
-	$(CC) ./$(SOURCE_FOLDER)/*.cpp $(INCLUDES) -F$(FRAMEWORKS_PATH) -framework $(FRAMEWORK) -o ./$(BUILD_FOLDER)/$(TARGET)
+	$(CC) ./$(SOURCE_FOLDER)/*.cpp $(INCLUDES) -F$(FRAMEWORKS_PATH) $(FRAMEWORKS) -o ./$(BUILD_FOLDER)/$(TARGET)
