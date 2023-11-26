@@ -1,6 +1,10 @@
 #ifndef FLAPPY_BIRD_GAME_H
 #define FLAPPY_BIRD_GAME_H
 
+#include "bird.h"
+
+#include <memory>
+
 // global namespace forward declarations
 struct SDL_Window;
 struct SDL_Renderer;
@@ -15,12 +19,17 @@ class Game final {
 
    Game(int width, int height);
    ~Game();
+
    int run();
 
  private:
    SDL_Window *window;
    SDL_Renderer *renderer;
    State state;
+   std::shared_ptr<Bird> bird;
+   unsigned long currentMillis;
+   unsigned long previousMillis;
+   static const int FPS = 40;
 };
 } // namespace flappy_bird
 
