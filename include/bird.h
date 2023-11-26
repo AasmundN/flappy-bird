@@ -4,19 +4,20 @@
 #include "entity.h"
 
 class Bird : public Entity {
-
  public:
-   Bird(SDL_Renderer &renderer);
-   ~Bird();
-   void render(SDL_Renderer &renderer);
+   Bird(SDL_Renderer &renderer, SDL_Texture &texture);
+   virtual ~Bird() = default;
+   
+   void render();
    void update();
    void jump();
 
  private:
+   SDL_Renderer &renderer;
+   SDL_Texture &texture;
    int velocity;
    int acceleration;
-   const char *img = "graphics/mogus.png";
-   SDL_Texture *img_texture;
+   double angle;
 };
 
 #endif

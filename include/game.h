@@ -2,8 +2,10 @@
 #define FLAPPY_BIRD_GAME_H
 
 #include "bird.h"
+#include "pipe.h"
 
 #include <memory>
+#include <vector>
 
 // global namespace forward declarations
 struct SDL_Window;
@@ -25,11 +27,19 @@ class Game final {
  private:
    SDL_Window *window;
    SDL_Renderer *renderer;
+
+   SDL_Texture *pipeTexture;
+   SDL_Texture *birdTexture;
+
    State state;
    std::shared_ptr<Bird> bird;
-   unsigned long currentMillis;
-   unsigned long previousMillis;
+   std::vector<std::shared_ptr<Pipe>> pipes;
+   unsigned long frameStart;
+   unsigned long frameTime;
    static const int FPS = 40;
+
+   void updateFrame();
+   void drawFrame();
 };
 } // namespace flappy_bird
 
