@@ -4,31 +4,43 @@
 
 #define GRAVITY -1
 
-Bird::Bird(SDL_Renderer &renderer, SDL_Texture &texture, int size, int x, int y) : Entity(renderer, texture), velocity(10), acceleration(GRAVITY), angle(0) {
-   rect.h = size;
-   rect.w = size;
+#define SPRITE_WIDTH 192
+#define SPRITE_HEIGHT 112
+#define SPRITE_BORDER_WIDTH 4
 
+Bird::Bird(SDL_Renderer &renderer, SDL_Texture &texture, int width, int height, int x, int y)
+    : Entity(renderer, texture),
+      jumpState(3),
+      velocity(10),
+      animationState(0),
+      acceleration(GRAVITY),
+      srcrect({SPRITE_BORDER_WIDTH, SPRITE_BORDER_WIDTH, SPRITE_WIDTH, SPRITE_HEIGHT}),
+      angle(0) {
+   rect.h = height;
+   rect.w = width;
    rect.x = x;
    rect.y = y;
 }
 
 void Bird::render() {
-   if (velocity >= 12) {
-      angle = 0;
-   } else if (velocity <= -12) {
-      angle = 140;
-   } else {
-      angle = 140 - (velocity + 12) * (140 / 24);
-   }
+   srcrect.x = SPRITE_BORDER_WIDTH + (2 * SPRITE_BORDER_WIDTH * animationState) + (SPRITE_WIDTH * animationState);
+   SDL_RenderCopyEx(&renderer, &texture, &srcrect, &rect, angle, NULL, SDL_FLIP_NONE);
 
-   SDL_RenderCopyEx(&renderer, &texture, NULL, &rect, angle, NULL, SDL_FLIP_NONE);
+   if (animationState < 7) {
+      animationState++;
+   }
 }
 
 void Bird::update() {
-   velocity += acceleration;
+   updateJumpState();
+
+   if (velocity <= 10 || acceleration == GRAVITY) {
+      velocity += acceleration;
+   }
 
    if (rect.y - velocity > 750) {
       rect.y = 750;
+      velocity = 0;
       return;
    }
 
@@ -36,5 +48,27 @@ void Bird::update() {
 }
 
 void Bird::jump() {
-   velocity = 12;
+   velocity = 0;
+   jumpState = 0;
+   animationState = 0;
+}
+
+void Bird::updateJumpState() {
+   switch (jumpState) {
+   case 0:
+      acceleration = 4;
+      break;
+
+   case 1:
+      acceleration = 7;
+      break;
+
+   case 2:
+      acceleration = GRAVITY;
+      break;
+   }
+
+   if (jumpState < 3) {
+      jumpState++;
+   }
 }

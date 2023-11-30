@@ -12,7 +12,8 @@
 #define PIPE_INTERVAL 150
 #define PIPE_SPEED 2
 
-#define BIRD_SIZE 60
+#define BIRD_WIDTH 70
+#define BIRD_HEIGHT 50
 #define BIRD_X 100
 #define BIRD_Y 200
 
@@ -86,8 +87,7 @@ int Game::run() {
    SDL_Event event;
 
    // load images and create textures for pipes and bird
-   birdTexture = IMG_LoadTexture(renderer, "./graphics/mogus.png");
-
+   birdTexture = IMG_LoadTexture(renderer, "./graphics/book.png");
    for (int i = 1; i < 4; i++) {
       std::string img = "./graphics/pipe-" + std::to_string(i) + ".png";
       pipeTextures.insert(pipeTextures.end(), IMG_LoadTexture(renderer, img.c_str()));
@@ -95,7 +95,7 @@ int Game::run() {
 
    // create bird
    if (!bird) {
-      bird = std::make_unique<Bird>(*renderer, *birdTexture, BIRD_SIZE, BIRD_X, BIRD_Y);
+      bird = std::make_unique<Bird>(*renderer, *birdTexture, BIRD_WIDTH, BIRD_HEIGHT, BIRD_X, BIRD_Y);
    }
 
    // create first pipe
@@ -184,7 +184,7 @@ void Game::drawFrame() {
 }
 
 void Game::collide() {
-   // get position and shift of current pipe
+   // get position of current pipe
    const int pipeX = pipes[0]->getX();
 
    // pipe is already passed
@@ -205,14 +205,14 @@ void Game::collide() {
       const int gapTop = gapY - 75;
       const int gapBottom = gapY + 80;
 
-      const bool validY = (birdY > gapTop) && (birdY + BIRD_SIZE < gapBottom);
+      const bool validY = (birdY > gapTop) && (birdY + BIRD_HEIGHT < gapBottom);
 
       // bird is within the gap
       if (validY) {
          return;
       }
 
-      const bool validX = pipeX > BIRD_X + BIRD_SIZE - 20;
+      const bool validX = pipeX > BIRD_X + BIRD_WIDTH - 20;
 
       // bird has not yet collided with the pipe
       if (validX) {
