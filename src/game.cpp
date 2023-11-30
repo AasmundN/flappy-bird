@@ -207,13 +207,14 @@ void Game::collide() {
 
       const bool validY = (birdY > gapTop) && (birdY + BIRD_SIZE < gapBottom);
 
-      // bird is wihtin the gap
+      // bird is within the gap
       if (validY) {
          return;
       }
 
       const bool validX = pipeX > BIRD_X + BIRD_SIZE - 20;
 
+      // bird has not yet collided with the pipe
       if (validX) {
          return;
       }
