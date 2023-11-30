@@ -5,7 +5,7 @@
 
 class Entity {
  public:
-   Entity() : rect({0, 0, 0, 0}) {}
+   Entity(SDL_Renderer &renderer, SDL_Texture &texture) : renderer(renderer), texture(texture), rect({0, 0, 0, 0}) {}
    virtual ~Entity() = default;
 
    virtual void render() = 0;
@@ -13,6 +13,8 @@ class Entity {
 
  protected:
    SDL_Rect rect;
+   SDL_Renderer &renderer;
+   SDL_Texture &texture;
 };
 
 #endif

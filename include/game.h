@@ -7,9 +7,7 @@
 #include <memory>
 #include <vector>
 
-// global namespace forward declarations
-struct SDL_Window;
-struct SDL_Renderer;
+struct _TTF_Font;
 
 namespace flappy_bird {
 class Game final {
@@ -22,16 +20,23 @@ class Game final {
  private:
    enum class State {
       RUNNING,
-      STOPPED
+      STOPPED,
+      LOST
    };
+
+   int width, height;
 
    SDL_Window *window;
    SDL_Renderer *renderer;
 
-   SDL_Texture *pipeTexture;
+   std::vector<SDL_Texture *> pipeTextures;
    SDL_Texture *birdTexture;
+   _TTF_Font *font;
 
    State state;
+
+   SDL_Rect scoreDst;
+   int score;
 
    std::shared_ptr<Bird> bird;
    std::vector<std::shared_ptr<Pipe>> pipes;
@@ -42,6 +47,8 @@ class Game final {
 
    void updateFrame();
    void drawFrame();
+   void collide();
+   void drawScore();
 };
 } // namespace flappy_bird
 

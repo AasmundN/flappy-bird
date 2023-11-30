@@ -2,11 +2,13 @@
 
 #include <SDL_image.h>
 
+int randInt(int lower, int upper);
+
 Pipe::Pipe(SDL_Renderer &renderer, SDL_Texture &texture, int width, int height, int interval, int speed)
-    : renderer(renderer),
-      texture(texture),
+    : Entity(renderer, texture),
       interval(interval),
       width(width),
+      passed(false),
       height(height),
       speed(speed) {
 
@@ -14,6 +16,10 @@ Pipe::Pipe(SDL_Renderer &renderer, SDL_Texture &texture, int width, int height, 
    rect.h = height;
    rect.w = width;
    rect.x = 500;
+
+   // set random shift
+   shift = randInt(-125, 125);
+   rect.y = -200 + shift;
 }
 
 void Pipe::render() {

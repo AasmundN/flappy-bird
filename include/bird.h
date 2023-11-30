@@ -5,16 +5,16 @@
 
 class Bird : public Entity {
  public:
-   Bird(SDL_Renderer &renderer, SDL_Texture &texture);
+   Bird(SDL_Renderer &renderer, SDL_Texture &texture, int size, int x, int y);
    virtual ~Bird() = default;
-   
+
    void render();
    void update();
    void jump();
 
+   int getY() { return rect.y; }
+
  private:
-   SDL_Renderer &renderer;
-   SDL_Texture &texture;
    int velocity;
    int acceleration;
    double angle;

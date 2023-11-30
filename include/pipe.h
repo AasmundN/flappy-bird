@@ -9,15 +9,17 @@ class Pipe : public Entity {
    virtual ~Pipe() = default;
    void render();
    void update();
+
    int getX() { return rect.x; }
+   int getShift() { return shift; }
+
+   bool isPassed() { return passed; }
+   void setPassed() { passed = true; }
 
  private:
-   SDL_Renderer &renderer;
-   SDL_Texture &texture;
-   int interval;
-   int width;
-   int height;
+   int interval, width, height, shift;
    int speed;
+   bool passed;
 };
 
 #endif

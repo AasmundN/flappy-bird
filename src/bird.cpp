@@ -4,12 +4,12 @@
 
 #define GRAVITY -1
 
-Bird::Bird(SDL_Renderer &renderer, SDL_Texture &texture) : renderer(renderer), texture(texture), velocity(10), acceleration(GRAVITY), angle(0) {
-   rect.h = 70;
-   rect.w = 70;
+Bird::Bird(SDL_Renderer &renderer, SDL_Texture &texture, int size, int x, int y) : Entity(renderer, texture), velocity(10), acceleration(GRAVITY), angle(0) {
+   rect.h = size;
+   rect.w = size;
 
-   rect.x = 100;
-   rect.y = 200;
+   rect.x = x;
+   rect.y = y;
 }
 
 void Bird::render() {
