@@ -9,11 +9,11 @@ BUILD_FOLDER = bin
 SOURCE_FOLDER = src
 
 # all include directories
-INCLUDES = -I/Library/Frameworks/SDL2.framework/Headers -I/Library/Frameworks/SDL2_image.framework/Headers -I./include
+INCLUDES = -I/Library/Frameworks/SDL2.framework/Headers -I/Library/Frameworks/SDL2_image.framework/Headers -I/Library/Frameworks/SDL2_ttf.framework/Headers -I./include
 
 # framework path
 FRAMEWORKS_PATH = /Library/Frameworks
-FRAMEWORKS = -framework SDL2 -framework SDL2_image
+FRAMEWORKS = -framework SDL2 -framework SDL2_image -framework SDL2_ttf
 
 all: output $(TARGET)
 
