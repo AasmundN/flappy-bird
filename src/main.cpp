@@ -1,7 +1,5 @@
 #include "game.h"
 
-#include <SDL.h>
-
 const int width = 500;
 const int height = 800;
 
