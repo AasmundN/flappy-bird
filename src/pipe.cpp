@@ -12,20 +12,20 @@ Pipe::Pipe(SDL_Renderer &renderer, SDL_Texture &texture, int width, int height, 
       height(height),
       speed(speed) {
 
-   // set dimensions of pipe
-   rect.h = height;
-   rect.w = width;
-   rect.x = 500;
+  // set dimensions of pipe
+  rect.h = height;
+  rect.w = width;
+  rect.x = 500;
 
-   // set random shift
-   shift = randInt(-125, 125);
-   rect.y = -200 + shift;
+  // set random shift
+  shift = randInt(-125, 125);
+  rect.y = -200 + shift;
 }
 
 void Pipe::render() {
-   SDL_RenderCopy(&renderer, &texture, NULL, &rect);
+  SDL_RenderCopy(&renderer, &texture, NULL, &rect);
 }
 
 void Pipe::update() {
-   rect.x -= speed;
+  rect.x -= speed;
 }
