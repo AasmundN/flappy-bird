@@ -12,21 +12,15 @@ set(SOURCES
    src/pipe.cpp
 )
 
+find_package(SDL2 REQUIRED COMPONENTS SDL2)
+find_package(SDL2_image REQUIRED COMPONENTS SDL2_image)
+find_package(SDL2_ttf REQUIRED COMPONENTS SDL2_ttf)
+
 add_executable(${PROJECT_NAME} ${SOURCES})
 
-target_link_libraries(
-  ${PROJECT_NAME} PRIVATE
-  /Library/Frameworks/SDL2.framework/Versions/A/SDL2
-  /Library/Frameworks/SDL2_image.framework/Versions/A/SDL2_image
-  /Library/Frameworks/SDL2_ttf.framework/Versions/A/SDL2_ttf
-)
-
-target_include_directories(
-  ${PROJECT_NAME} PRIVATE
-  /Library/Frameworks/SDL2.framework/Versions/A/Headers
-  /Library/Frameworks/SDL2_image.framework/Versions/A/Headers
-  /Library/Frameworks/SDL2_ttf.framework/Versions/A/Headers
-)
+target_link_libraries(${PROJECT_NAME} PRIVATE SDL2::SDL2)
+target_link_libraries(${PROJECT_NAME} PRIVATE SDL2_image::SDL2_image)
+target_link_libraries(${PROJECT_NAME} PRIVATE SDL2_ttf::SDL2_ttf)
 
 target_include_directories(${PROJECT_NAME} PRIVATE include)
 
